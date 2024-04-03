@@ -1,0 +1,83 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0; /* Light gray background */
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  padding: 50px 30px;
+}
+.sub {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to left,
+    #ff7e5f,
+    #feb47b
+  ); /* Gradient background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 80px 30px;
+}
+.left {
+  height: 100%;
+  width: 45%;
+}
+.top h1 {
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-left: 80px;
+  font-size: 40px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  color: #fff; /* White text color */
+}
+.bottom h3 {
+  margin-bottom: 10px;
+  margin-left: 100px;
+  font-family: "Rubik", sans-serif;
+  color: #fff; /* White text color */
+}
+.bottom h3:nth-child(1) {
+  padding-top: 10px;
+}
+.data {
+  font-family: "PT Serif", serif;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff; /* White text color */
+}
+.data_heading {
+  font-family: "PT Serif", serif;
+  font-weight: bold;
+  color: #fff; /* White text color */
+}
+.right {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input {
+  margin-bottom: 10px;
+}
+.heading h1 {
+  font-size: 40px;
+  color: #fff; /* White text color */
+  font-weight: 800;
+  font-family: "Rubik", sans-serif;
+  text-shadow: 1px 0px 19px #694a5a;
+}
