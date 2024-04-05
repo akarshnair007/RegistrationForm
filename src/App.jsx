@@ -11,25 +11,58 @@ const App = () => {
   });
 
   const [show, setShow] = useState(false);
+  const [errors, setErrors] = useState({
+    usernameError: "",
+    passwordError: "",
+  });
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
+    if (name === "username") {
+      if (value.length !== 7) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          usernameError: "Username must be 7 characters long.",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          usernameError: "",
+        }));
+      }
+      setShow(false);
+    }
+    // Validate password
+    if (name === "password") {
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
+      if (!passwordRegex.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          passwordError:
+            "Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 7 characters long.",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          passwordError: "",
+        }));
+      }
+    }
+    // Update datas state
     setDatas({
       ...datas,
       [name]: value,
     });
   };
-
   const submitHandler = (e) => {
-    if (!show) {
-      setShow(true);
-    } else {
-      setShow(false);
+    alert("Registered Successfully");
+
+    if (errors.usernameError || errors.passwordError) {
+      return;
     }
 
-    // console.log(datas.username);
-    // console.log(datas.email);
-    // console.log(datas.password);
+    setShow(true);
   };
 
   return (
@@ -44,20 +77,6 @@ const App = () => {
                   {show ? datas.username : "Username"}
                 </span>
               </h1>
-            </div>
-            <div className="bottom">
-              <h3>
-                Your emailID:{" "}
-                <span className="data">
-                  {show ? datas.email : "User Email"}
-                </span>
-              </h3>
-              <h3>
-                Your Password:{" "}
-                <span className="data">
-                  {show ? datas.password : "User Password"}
-                </span>
-              </h3>
             </div>
           </div>
           <div className="right">
@@ -95,6 +114,11 @@ const App = () => {
                 }}
                 onChange={(e) => changeHandler(e)}
               />
+              {errors.usernameError && (
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errors.usernameError}
+                </p>
+              )}
               <br />
               <TextField
                 id="outlined-basic"
@@ -110,6 +134,11 @@ const App = () => {
                 }}
                 onChange={(e) => changeHandler(e)}
               />
+              {errors.passwordError && (
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errors.passwordError}
+                </p>
+              )}
               <div
                 className="select"
                 style={{
